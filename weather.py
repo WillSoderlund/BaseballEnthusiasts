@@ -14,26 +14,14 @@ def get_average_temperature(lat, lon, start_time, end_time):
                             headers={'api-key': api_key}
                             )
 
-    # Check if the request was successful (status code 200)
     if response.status_code == 200:
-        # Parse the JSON response
         data = response.json()
-        
-        # Parse the nested JSON string within the 'data' field
         nested_data = json.loads(data['data'])
-        
-        # Extract temperature data
         temperature_data = nested_data['data']
-        
-        # Extract temperature values
         temperatures = [entry[-1] for entry in temperature_data]
-        
-        # Calculate the average temperature
         average_temperature = sum(temperatures) / len(temperatures)
-        
         return average_temperature
     else:
-        # Print the error message if request was not successful
         print("Error:", response.status_code, response.text)
 
 # Example usage:
