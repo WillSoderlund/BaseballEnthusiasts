@@ -1,14 +1,14 @@
+
 import json
 import requests
 
-def get_average_temperature(lat, lon, start_time, end_time):
+def get_average_temperature(location, start_time, end_time):
     api_key = '864c21a57f6c4e479af40e7c60666ec3'
     url = 'https://api.oikolab.com/weather'
 
     response = requests.get(url,
                             params={'param': ['temperature'],
-                                    'lat': [lat],
-                                    'lon': [lon],
+                                    'location': [location],
                                     'start': start_time,
                                     'end': end_time},
                             headers={'api-key': api_key}
@@ -25,6 +25,6 @@ def get_average_temperature(lat, lon, start_time, end_time):
         print("Error:", response.status_code, response.text)
 
 # Example usage:
-average_temp = get_average_temperature(23.1, 114.1, "2022-01-01 00 UTC", "2022-01-01 01 UTC")
+average_temp = get_average_temperature('Boston, Massachusetts', "2022-01-01 00 UTC", "2022-01-01 01 UTC")
 if average_temp is not None:
     print("Average Temperature:", average_temp, "°C")
