@@ -1,100 +1,3 @@
-# import requests
-
-# url = 'https://api.sportradar.com/mlb/trial/v7/en/games/2023/08/28/boxscore.json'
-# api_key = 'SvGLYShuQQ5RuSyFGAGlQqH2eI5w5zUanQ8pizwj'
-
-# params = {
-#     'api_key': api_key
-# }
-
-# response = requests.get(url, params=params)
-
-# if response.status_code == 200:
-#     data = response.json()
-#     print("Data retrieved successfully!")
-
-#     # Assuming the games are listed under 'games' within 'league'
-#     games = data.get('league', {}).get('games', [])
-
-#     for game in games:
-#         game_info = game.get('game', {})
-#         home_team = game_info.get('home', {})
-#         away_team = game_info.get('away', {})
-
-#         # Fetching names and runs for home and away teams
-#         home_team_name = home_team.get('name', 'Unknown Home Team')
-#         away_team_name = away_team.get('name', 'Unknown Away Team')
-#         home_team_runs = home_team.get('runs', 'Data not available')
-#         away_team_runs = away_team.get('runs', 'Data not available')
-
-#         # Calculate total runs for the game
-#         if isinstance(home_team_runs, int) and isinstance(away_team_runs, int):
-#             total_runs = home_team_runs + away_team_runs
-#             print(f"{home_team_name} vs {away_team_name}")
-#             print(f"  Total Runs: {total_runs}\n")
-#         else:
-#             print(f"Data for {home_team_name} or {away_team_name} is incomplete.\n")
-
-# else:
-#     print("Failed to retrieve data. Status code:", response.status_code)
-
-
-
-# import requests
-# from datetime import datetime, timedelta
-
-# # Define the base URL and API key
-# url_base = 'https://api.sportradar.com/mlb/trial/v7/en/games/2023/09/{day}/boxscore.json'
-# api_key = 'SvGLYShuQQ5RuSyFGAGlQqH2eI5w5zUanQ8pizwj'
-
-# # Loop through each day in September 2023
-# start_date = datetime(2023, 3, 30)
-# end_date = datetime(2023, 9, 30)
-
-# current_date = start_date
-# while current_date <= end_date:
-#     day = current_date.strftime('%d')  # Format day as '01', '02', ..., '30'
-#     url = url_base.format(day=day)  # Insert the day into the URL
-
-#     params = {
-#         'api_key': api_key
-#     }
-
-#     response = requests.get(url, params=params)
-
-#     if response.status_code == 200:
-#         data = response.json()
-#         print(f"Data retrieved successfully for {current_date.strftime('%Y-%m-%d')}!")
-
-#         # Assuming the games are listed under 'games' within 'league'
-#         games = data.get('league', {}).get('games', [])
-
-#         for game in games:
-#             game_info = game.get('game', {})
-#             home_team = game_info.get('home', {})
-#             away_team = game_info.get('away', {})
-
-#             # Fetching names and runs for home and away teams
-#             home_team_name = home_team.get('name', 'Unknown Home Team')
-#             away_team_name = away_team.get('name', 'Unknown Away Team')
-#             home_team_runs = home_team.get('runs', 'Data not available')
-#             away_team_runs = away_team.get('runs', 'Data not available')
-
-#             # Calculate total runs for the game
-#             if isinstance(home_team_runs, int) and isinstance(away_team_runs, int):
-#                 total_runs = home_team_runs + away_team_runs
-#                 print(f"{home_team_name} vs {away_team_name}")
-#                 print(f"  Total Runs: {total_runs}\n")
-#             else:
-#                 print(f"Data for {home_team_name} or {away_team_name} is incomplete.\n")
-
-#     else:
-#         print(f"Failed to retrieve data for {current_date.strftime('%Y-%m-%d')}. Status code:", response.status_code)
-    
-#     # Move to the next day
-#     current_date += timedelta(days=1)
-
-
 import requests
 from datetime import datetime, timedelta
 
@@ -122,7 +25,7 @@ while current_date <= end_date:
 
     if response.status_code == 200:
         data = response.json()
-        print(f"Data retrieved successfully for {current_date.strftime('%Y-%m-%d')}!")
+        #print(f"Data retrieved successfully for {current_date.strftime('%Y-%m-%d')}!")
 
         # Assuming the games are listed under 'games' within 'league'
         games = data.get('league', {}).get('games', [])
@@ -149,8 +52,8 @@ while current_date <= end_date:
             team_stats[away_team_name]['runs'] += away_team_runs
             team_stats[away_team_name]['games'] += 1
 
-    else:
-          print(f"Failed to retrieve data for {current_date.strftime('%Y-%m-%d')}. Status code:", response.status_code)
+    #else:
+          #print(f"Failed to retrieve data for {current_date.strftime('%Y-%m-%d')}. Status code:", response.status_code)
     
     # Move to the next day
     current_date += timedelta(days=1)
